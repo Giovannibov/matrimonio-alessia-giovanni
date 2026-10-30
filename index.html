@@ -175,6 +175,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
     form.reset();
   } catch (error) {
     console.error('Errore durante il salvataggio RSVP:', error);
+status.textContent = `Errore: ${error.message || 'problema sconosciuto'}`;
     status.textContent =
       'Non è stato possibile salvare la risposta. Riprova tra poco.';
   } finally {

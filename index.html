@@ -145,7 +145,42 @@ updateCountdown();setInterval(updateCountdown,1000);
 document.getElementById('menuToggle').addEventListener('click',()=>{const nav=document.getElementById('mainNav');const open=nav.classList.toggle('open');document.getElementById('menuToggle').setAttribute('aria-expanded',String(open));});
 document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('mainNav').classList.remove('open');document.getElementById('menuToggle').setAttribute('aria-expanded','false');}));
 document.getElementById('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('dark-mode');document.getElementById('themeToggle').textContent=document.body.classList.contains('dark-mode')?'☀':'☾';});
-document.getElementById('rsvpForm').addEventListener('submit',e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target));document.getElementById('rsvpStatus').textContent=`Grazie ${data.nome}! La risposta è stata acquisita in questa demo, ma il salvataggio online deve ancora essere attivato.`;});
+document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form));
+  const status = document.getElementById('rsvpStatus');
+  const button = form.querySelector('button[type="submit"]');
+
+  status.textContent = 'Invio della risposta in corso...';
+  if (button) button.disabled = true;
+
+  try {
+    const { error } = await supabaseClient
+      .from('rsvp_responses')
+      .insert({
+        first_name: data.nome,
+        last_name: data.cognome,
+        attendance: data.presenza,
+        party_size: data.ospiti ? Number(data.ospiti) : null,
+        dietary_notes: data.dieta || null
+      });
+
+    if (error) throw error;
+
+    status.textContent =
+      `Grazie ${data.nome}! La tua risposta è stata salvata correttamente.`;
+
+    form.reset();
+  } catch (error) {
+    console.error('Errore durante il salvataggio RSVP:', error);
+    status.textContent =
+      'Non è stato possibile salvare la risposta. Riprova tra poco.';
+  } finally {
+    if (button) button.disabled = false;
+  }
+});
 // Configurazione pubblica del frontend: inserire qui la chiave publishable/anon di Supabase.
 // NON inserire mai la service_role key in questo file.
 const SUPABASE_URL = 'https://odxwfibtxebpuryrrrnd.supabase.co';

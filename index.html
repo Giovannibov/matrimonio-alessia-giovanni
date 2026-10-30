@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5efdf">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>Alessia & Giovanni — 3 settembre 2027</title>
+<style>
+:root{--paper:#f5efdf;--paper2:#eee5d1;--red:#b63220;--navy:#142e4d;--ochre:#d8951e;--sage:#d8d7bd;--ink:#182c43;--line:#d4c7aa;--white:#fffaf0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;z-index:5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}
+a{color:inherit}.nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(18px,5vw,70px);background:rgba(245,239,223,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.brand{font-weight:900;color:var(--navy);letter-spacing:-2px;font-size:20px}.brand span{color:var(--ochre)}.navlinks{display:flex;gap:clamp(12px,3vw,34px);font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}.navlinks a{text-decoration:none}.navlinks a:hover{color:var(--red)}
+.hero{min-height:650px;position:relative;overflow:hidden;display:grid;place-items:center;text-align:center;padding:70px 20px 58px;background:var(--paper)}
+.sun{position:absolute;width:220px;height:220px;border-radius:50%;background:var(--ochre);right:12%;top:36%;opacity:.95}.hero:before{content:"";position:absolute;left:-5%;bottom:0;width:110%;height:20%;background:repeating-linear-gradient(176deg,transparent 0 18px,rgba(19,45,73,.13) 19px 22px,transparent 23px 38px);clip-path:ellipse(75% 55% at 50% 100%);pointer-events:none}.sea{position:absolute;bottom:0;left:0;width:100%;height:31%;background:repeating-linear-gradient(176deg,transparent 0 13px,var(--navy) 14px 18px,transparent 19px 30px);opacity:.9;clip-path:polygon(0 30%,14% 18%,30% 38%,46% 24%,64% 44%,80% 26%,100% 38%,100% 100%,0 100%)}
+.rays{position:absolute;left:-35px;top:-28px;width:230px;height:230px;border-radius:50%;background:repeating-conic-gradient(from 5deg,var(--ochre) 0deg 8deg,transparent 8deg 19deg);mask:radial-gradient(circle,transparent 0 35%,#000 36% 100%);opacity:.95}
+.hero-content{position:relative;z-index:2;max-width:850px}.eyebrow{font-size:12px;letter-spacing:.22em;font-weight:800;color:var(--navy)}h1{font-size:clamp(55px,10vw,125px);line-height:.82;letter-spacing:-.075em;text-transform:uppercase;color:var(--red);margin:22px 0;text-shadow:2px 2px 0 rgba(127,42,25,.08)}h1 span{display:block}.amp{font-family:Georgia,serif;font-size:.48em;font-style:italic;color:var(--ochre);letter-spacing:0;margin:12px 0}.date{display:inline-block;color:var(--navy);font-size:clamp(19px,3vw,31px);font-weight:900;letter-spacing:.04em;border-top:4px solid var(--ochre);border-bottom:4px solid var(--ochre);padding:7px 16px;margin:8px}.venue{font-weight:900;color:var(--red);font-size:clamp(16px,2.4vw,25px);letter-spacing:.06em;margin-top:14px}.town{font-weight:800;letter-spacing:.16em;color:var(--navy);font-size:13px}.cta{display:inline-block;margin-top:25px;background:var(--red);color:white;border-radius:99px;text-decoration:none;padding:13px 23px;font-size:12px;letter-spacing:.12em;font-weight:900;box-shadow:0 4px 0 #852719;transition:transform .2s}.cta:hover{transform:translateY(-2px)}
+section{scroll-margin-top:75px;padding:72px clamp(20px,7vw,100px)}.section-kicker{font-size:11px;letter-spacing:.2em;font-weight:900;color:var(--red);text-transform:uppercase}.section-title{font-size:clamp(34px,5vw,58px);line-height:1.02;letter-spacing:-.05em;color:var(--navy);margin:10px 0 18px}.intro{max-width:620px;color:#485366}.schedule{background:var(--navy);color:var(--paper);padding:38px clamp(15px,5vw,70px);display:grid;grid-template-columns:repeat(4,1fr);gap:15px;text-align:center}.event{padding:10px;border-right:1px solid #718097}.event:last-child{border:0}.event .icon{font-size:34px;display:block;color:var(--ochre)}.event time{display:block;font-size:29px;font-weight:900;margin-top:4px}.event strong{font-size:12px;letter-spacing:.09em}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(25px,6vw,80px);align-items:start}.paper-card{background:var(--white);border:1px solid var(--line);padding:clamp(22px,4vw,40px);border-radius:4px;box-shadow:5px 5px 0 var(--paper2)}.details{background:var(--paper2)}.info-line{padding:13px 0;border-bottom:1px solid var(--line)}.info-line:last-child{border:0}.info-line b{display:block;color:var(--red);font-size:12px;text-transform:uppercase;letter-spacing:.1em}.btn{display:inline-block;border:0;border-radius:99px;padding:12px 18px;background:var(--sage);color:var(--navy);font-weight:900;font-size:12px;letter-spacing:.08em;text-decoration:none;cursor:pointer}.btn.red{background:var(--red);color:white}.btn.navy{background:var(--navy);color:white}
+label{display:block;font-size:12px;font-weight:800;letter-spacing:.03em;margin:13px 0 5px}input,select,textarea{width:100%;padding:12px 13px;background:#fffdf7;border:1px solid var(--line);border-radius:4px;font:inherit;color:var(--ink)}textarea{min-height:90px;resize:vertical}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.notice{font-size:12px;color:#657084;margin-top:12px}.status{font-size:13px;font-weight:700;margin-top:12px;min-height:20px;color:#27724d}
+.memories{background:#e8dfcb}.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:24px 0}.polaroid{background:#fffaf1;padding:10px 10px 18px;box-shadow:0 4px 15px #342b1d16;transform:rotate(-1deg)}.polaroid:nth-child(2){transform:rotate(2deg);margin-top:16px}.polaroid:nth-child(3){transform:rotate(-2deg)}.photo-placeholder{aspect-ratio:4/3;background:linear-gradient(145deg,#d9d2bd,#a9b1a2);display:grid;place-items:center;color:var(--navy);font-size:34px}.polaroid p{margin:10px 0 0;text-align:center;font-family:Georgia,serif;font-style:italic;color:#5d5c50;font-size:13px}.uploads{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.photo-card{display:flex;flex-direction:column;gap:8px;min-width:0}.photo-card>a{display:block}.photo-card img{width:100%;height:auto;display:block;border-radius:8px}.photo-download{display:block;align-self:stretch;padding:10px 12px;border:1px solid #24364b;border-radius:6px;background:#24364b;color:#fff;font:inherit;font-size:.85rem;text-align:center;text-decoration:none;cursor:pointer}.photo-download:disabled{opacity:.6;cursor:wait}.preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:18px}.preview img{width:100%;aspect-ratio:1;object-fit:cover;border:7px solid white;box-shadow:0 2px 8px #0001}.guest-messages{display:grid;gap:10px;margin-top:16px}.guest-message{padding:15px;background:#fffaf1;border-left:3px solid var(--ochre);white-space:pre-wrap}.gift{background:var(--paper)}.gift-mark{font-size:52px;color:var(--ochre)}footer{text-align:center;padding:36px 20px;background:var(--navy);color:var(--paper)}footer strong{font-family:Georgia,serif;font-size:26px;font-weight:normal}footer p{font-size:11px;letter-spacing:.12em}
+.countdown{display:flex;justify-content:center;gap:10px;margin:20px 0}.countbox{background:#fff7e8d9;border:1px solid var(--line);padding:9px 14px;min-width:66px}.countbox b{display:block;font-size:24px;color:var(--navy)}.countbox span{font-size:9px;letter-spacing:.1em;font-weight:900}
+@media(max-width:700px){.nav{align-items:flex-start;gap:12px}.navlinks{justify-content:flex-end;flex-wrap:wrap;font-size:10px;gap:10px 14px}.hero{min-height:570px}.sun{width:160px;height:160px;right:-20px;top:42%}.schedule{grid-template-columns:1fr 1fr}.event:nth-child(2){border:0}.event:nth-child(-n+2){border:0!important;padding-bottom:22px}.two-col{grid-template-columns:1fr}.photo-grid{grid-template-columns:1fr 1fr}.photo-grid .polaroid:last-child{display:none}.form-grid{grid-template-columns:1fr}section{padding-top:52px;padding-bottom:52px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Direzione visiva ispirata alla bozza: crema, terracotta, navy e sole al tramonto */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600&family=Italianno&display=swap');
+:root{--paper:#f5efd9;--paper2:#eee5c9;--red:#b83b27;--navy:#132d49;--ochre:#e4a21e;--sage:#e1d7b8;--ink:#233c54;--line:#d5c6a5;--white:#fbf5e5}
+body{font-family:'DM Sans',Arial,sans-serif;background:radial-gradient(ellipse at 80% 12%,#fff5d6 0,transparent 38%),var(--paper);font-size:16px}
+body:before{opacity:.08;z-index:0}
+.nav{position:sticky;top:12px;margin:12px auto 0;width:min(92%,1180px);border:3px solid #f0d4bd;border-radius:100px;padding:12px 18px 12px 20px;background:rgba(248,240,218,.94);box-shadow:10px 14px 0 rgba(28,48,65,.12);gap:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;letter-spacing:0}.brand-seal{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--red);outline:1px dotted var(--red);outline-offset:3px;border-radius:50%;color:var(--red);font-family:Georgia,serif;font-weight:400;font-size:17px;letter-spacing:-2px}.brand-script{font-family:'Italianno',cursive;font-size:36px;font-weight:400;color:var(--navy);letter-spacing:0;white-space:nowrap}.nav-actions{display:flex;gap:10px;margin-left:auto;order:2}.round-action{width:54px;height:54px;border-radius:50%;border:2px solid #d8c9aa;background:transparent;color:var(--navy);font-size:24px;cursor:pointer}.navlinks{display:none;order:3;flex-basis:100%;padding:10px 8px 4px;justify-content:center;flex-wrap:wrap}.navlinks.open{display:flex}.navlinks a{font-size:11px;letter-spacing:.12em;color:var(--navy)}
+.hero{min-height:680px;margin-top:0;padding:70px 22px 75px;text-align:left;display:block;background:transparent}.hero-content{max-width:920px;margin:0 auto;padding-top:65px}.eyebrow,.section-kicker{font-family:'Barlow Condensed',sans-serif;font-size:clamp(15px,2vw,21px);letter-spacing:.08em;color:var(--red);font-weight:700}.hero h1{font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(72px,14vw,150px);line-height:.82;letter-spacing:.005em;color:var(--red);margin:32px 0 42px;text-shadow:none}.hero h1 span{display:block}.hero .amp{font-family:'Italianno',cursive;font-size:.45em;color:var(--ochre);margin:25px 0 20px 16px;letter-spacing:0}.sun{width:clamp(210px,44vw,440px);height:clamp(210px,44vw,440px);right:7%;top:22%;opacity:.96;background:repeating-linear-gradient(to bottom,var(--ochre) 0 20px,transparent 20px 32px),var(--ochre);mask-image:linear-gradient(to bottom,#000 0 70%,transparent 70%);z-index:0}.rays{display:none}.sea{height:19%;opacity:.45;clip-path:polygon(0 25%,20% 45%,42% 20%,65% 42%,83% 22%,100% 36%,100% 100%,0 100%)}.hero-content{z-index:2}.date{border-top:0;border-bottom:3px solid var(--ochre);padding:7px 0;margin:10px 0;display:block;width:max-content;max-width:100%;font-family:'Barlow Condensed',sans-serif;font-size:clamp(25px,5vw,40px);letter-spacing:.04em}.venue{font-family:'Barlow Condensed',sans-serif;font-size:clamp(20px,3.3vw,30px);letter-spacing:.05em;margin-top:16px}.town{font-size:14px}.cta,.btn.red{background:var(--red);box-shadow:0 8px 0 rgba(130,38,25,.12);border-radius:100px;padding:17px 28px;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:.12em}
+.countdown{justify-content:flex-start;flex-wrap:wrap}.countbox{border-radius:8px;background:#fff7e8d9;padding:9px 14px}.countbox b{font-family:'Barlow Condensed',sans-serif;font-size:28px}
+section{padding:76px clamp(22px,6vw,90px);scroll-margin-top:100px}.section-title{font-family:'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;font-size:clamp(42px,7vw,72px);letter-spacing:.005em;line-height:.98;margin:12px 0 25px}.intro{font-size:clamp(17px,2.4vw,23px);line-height:1.8;color:#536d80;max-width:780px}.details{background:transparent}.paper-card{background:rgba(251,246,229,.82);border:2px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px);box-shadow:none}.info-line{line-height:1.8}.info-line b{font-family:'Barlow Condensed',sans-serif;font-size:16px;color:var(--red)}.btn{border-radius:100px;padding:14px 22px;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:.06em}.btn.red{border:0}input,select,textarea{border-radius:12px;background:#fffaf0;border-color:#d9c9a7}label{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:.04em}.schedule{background:transparent;color:var(--navy);grid-template-columns:1fr;gap:0;max-width:920px;margin:auto;text-align:left;padding:35px clamp(22px,6vw,90px)}.event{display:grid;grid-template-columns:55px 1fr;grid-template-rows:auto auto;column-gap:18px;border:0!important;padding:18px 15px 30px 24px;position:relative}.event .icon{position:absolute;left:-21px;top:18px;border:2px solid var(--red);background:var(--paper);border-radius:50%;width:40px;height:40px;display:grid;place-items:center;font-size:20px;color:var(--red)}.event time{grid-column:2;font-family:'Barlow Condensed',sans-serif;color:var(--red);font-size:clamp(32px,5vw,46px);margin:0}.event strong{grid-column:2;font-family:'Barlow Condensed',sans-serif;font-size:clamp(22px,3vw,30px);letter-spacing:.04em}.event:last-child{border:0!important}.memories{background:linear-gradient(180deg,rgba(238,229,201,.35),rgba(238,229,201,.8));border-top:1px solid #ead8b8;border-bottom:1px solid #ead8b8}.memories .paper-card{margin-top:30px!important}.memories h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--navy);font-size:27px}.preview{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:15px}.photo-card img{aspect-ratio:4/5;object-fit:cover;border:2px solid #f0d2b8;border-radius:16px}.photo-download{border:0;border-radius:100px;background:var(--red);font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em}.guest-message{border-radius:12px;border-left:4px solid var(--red)}footer{background:var(--navy);padding:50px 20px}footer strong{font-family:'Italianno',cursive;font-size:42px}
+body.dark-mode{--paper:#172c40;--paper2:#203b51;--red:#e16b4e;--navy:#f5efd9;--ochre:#e4a21e;--sage:#34516a;--ink:#f5efd9;--line:#526477;--white:#20364a;background:var(--paper);color:var(--ink)}body.dark-mode .nav,body.dark-mode .paper-card,body.dark-mode .countbox{background:rgba(31,52,70,.96)}body.dark-mode .intro{color:#d0dce4}body.dark-mode input,body.dark-mode select,body.dark-mode textarea{background:#20364a;color:#fff}body.dark-mode .event .icon{background:#172c40}
+@media(max-width:700px){.nav{top:8px;width:94%;padding:9px 11px;border-width:2px;gap:8px}.brand-seal{width:42px;height:42px}.brand-script{font-size:31px}.round-action{width:47px;height:47px}.hero{min-height:660px;padding-top:25px}.hero-content{padding-top:70px}.hero h1{font-size:clamp(66px,16vw,112px);margin:30px 0}.sun{right:-25px;top:23%;width:250px;height:250px}.hero:before{width:110%;height:18%}.sea{height:15%}.schedule{padding-top:30px;padding-bottom:30px}.event{padding-bottom:26px}.two-col{grid-template-columns:1fr}.photo-grid{grid-template-columns:1fr 1fr}.navlinks{gap:12px 18px}.navlinks a{font-size:10px}section{padding-top:58px;padding-bottom:58px}.countbox{min-width:58px}.countbox b{font-size:22px}}
+
+/* Ritocchi richiesti: icone dedicate e programma senza linee di collegamento */
+.schedule .event{border:0!important;border-left:0!important;border-right:0!important;border-bottom:0!important}
+.schedule .event .icon{font-family:Arial,sans-serif;font-weight:400}
+.hero:before{background:repeating-linear-gradient(176deg,transparent 0 18px,rgba(19,45,73,.12) 19px 22px,transparent 23px 38px);clip-path:ellipse(75% 55% at 50% 100%)}
+.album-icon{width:76px;height:76px;border-radius:50%;border:2px solid var(--ochre);background:var(--paper2);font-size:34px;cursor:pointer;box-shadow:4px 4px 0 var(--line)}.album-launcher h3{margin-bottom:4px}.stay-list{margin:8px 0 18px 22px;line-height:1.9}.iban{font-weight:900;letter-spacing:.04em;overflow-wrap:anywhere;color:var(--navy);font-size:clamp(16px,2.5vw,22px);padding:12px;background:var(--paper2);border-radius:8px}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#home" aria-label="Torna all'inizio"><span class="brand-seal">AG</span><span class="brand-script">A &amp; G</span></a>
+  <div class="nav-actions"><button class="round-action" id="themeToggle" type="button" aria-label="Cambia tema" title="Cambia tema">☾</button><button class="round-action menu-toggle" id="menuToggle" type="button" aria-label="Apri menu" aria-expanded="false">☰</button></div>
+  <nav class="navlinks" id="mainNav" aria-label="Navigazione principale">
+    <a href="#home">Home</a><a href="#programma">Info &amp; Details</a><a href="#location">La location</a><a href="#rsvp">RSVP</a><a href="#ricordi">Foto</a><a href="#lista">Il nostro viaggio</a>
+  </nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="rays"></div><div class="sun"></div><div class="sea"></div>
+  <div class="hero-content">
+    <div class="eyebrow">IL NOSTRO MATRIMONIO AL TRAMONTO</div>
+    <h1><span>Alessia</span><div class="amp">e</div><span>Giovanni</span></h1>
+    <div class="date">3 SETTEMBRE 2027</div>
+    <div class="venue">NABILAH BEACH CLUB</div><div class="town">BACOLI · CAMPANIA</div>
+    <div class="countdown" id="countdown" aria-label="Conto alla rovescia"></div>
+    <a class="cta" href="#programma">SCOPRI IL NOSTRO GIORNO&nbsp; ↗</a>
+  </div>
+</section>
+<div class="schedule" id="programma">
+  <div class="event"><span class="icon" aria-label="Cerimonia"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></span><time>17:30</time><strong>CERIMONIA</strong></div>
+  <div class="event"><span class="icon" aria-label="Aperitivo"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l-1.1 8.2a4 4 0 0 1-7.8 0L7 3Z"/><path d="M12 15v5m-4 0h8"/></svg></span><time>18:00</time><strong>APERITIVO AL TRAMONTO</strong></div>
+  <div class="event"><span class="icon" aria-label="Cena"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6m-3-6v4a3 3 0 0 0 6 0V3M6 10v11"/><path d="M16 3c-2 2-3 4.5-3 7v2h4v9M17 3v9"/></svg></span><time>19:30</time><strong>CENA SOTTO LE STELLE</strong></div>
+  <div class="event"><span class="icon" aria-label="Musica e festa">♫</span><time>23:00</time><strong>TAGLIO TORTA &amp; PARTY</strong></div>
+</div>
+<section class="details" id="location">
+  <div class="two-col">
+    <div>
+      <h2 class="section-title">La location</h2>
+      <p class="intro">Non vediamo l’ora di festeggiare questo giorno speciale insieme a voi. Qui troverete tutto ciò che serve per godervi la giornata senza pensieri.</p>
+      <div class="paper-card">
+        <div class="info-line"><b>La location</b>Nabilah Beach Club</div>
+        <div class="info-line"><b>Indirizzo</b>Piazzale Servilio Vatia 11 — Bacoli</div>
+        <div class="info-line"><b>Data</b>Venerdì 3 settembre 2027</div>
+        <div class="info-line"><b>Dress code</b><span>Elegante estivo · scegliete il vostro stile</span></div>
+        <p><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Nabilah+Beach+Club+Bacoli" target="_blank" rel="noopener">APRI LE INDICAZIONI ↗</a></p>
+      </div>
+    </div>
+    <div class="paper-card">
+      <div class="section-kicker">La giornata, momento per momento</div><h2 class="section-title">Info &amp; Details</h2>
+      <div class="info-line"><b>Parcheggio</b>Parcheggio presente di fronte alla location.</div>
+      <div class="info-line"><b>Orari</b>Vi consigliamo di arrivare con un po’ di anticipo rispetto all’inizio della cerimonia.</div>
+      <div class="info-line"><b>Domande?</b>Per informazioni logistiche, contattate direttamente gli sposi.</div>
+      <div class="info-line"><b>Dove soggiornare</b><span>Per chi arriva da lontano, ecco alcune strutture da valutare. Vi consigliamo di contattarle direttamente per verificare disponibilità e prezzi.</span></div>
+      <ul class="stay-list"><li>Naro Suites and Rooms</li><li>Villa Aragonese</li><li>Hotel Calea</li><li>Uefio</li><li>Dea Fortunata</li></ul>
+    </div>
+  </div>
+</section>
+<section id="rsvp">
+  <div class="two-col">
+    <div><div class="section-kicker">Ci sarete?</div><h2 class="section-title">Confermate la<br>vostra presenza.</h2><p class="intro">Vi chiediamo gentilmente di rispondere entro il <strong>1° Giugno 2027</strong>. Ci aiuterete a organizzare ogni dettaglio al meglio.</p><p class="notice">Il modulo è in fase di collegamento: prima di condividere il sito con gli invitati, verificheremo che le risposte arrivino correttamente agli sposi.</p></div>
+    <form class="paper-card" id="rsvpForm">
+      <div class="form-grid"><div><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="given-name" required placeholder="Il tuo nome"></div><div><label for="cognome">Cognome</label><input id="cognome" name="cognome" autocomplete="family-name" required placeholder="Il tuo cognome"></div></div>
+      <label for="presenza">Parteciperai?</label><select id="presenza" name="presenza" required><option value="">Seleziona una risposta</option><option value="Sì, ci sarò!">Sì, ci sarò!</option><option value="Mi dispiace, non potrò">Mi dispiace, non potrò</option></select>
+      <label for="ospiti">Numero di persone (incluso te)</label><select id="ospiti" name="ospiti"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+      <label for="dieta">Allergie, intolleranze o esigenze alimentari</label><textarea id="dieta" name="dieta" placeholder="Facoltativo"></textarea>
+      <label for="nota">Un messaggio per gli sposi (facoltativo)</label><textarea id="nota" name="nota" placeholder="Scrivete qui..."></textarea>
+      <button class="btn red" type="submit">REGISTRA LA RISPOSTA →</button><div class="status" id="rsvpStatus" role="status"></div>
+    </form>
+  </div>
+</section>
+<section class="memories" id="ricordi">
+  <div class="section-kicker">I vostri scatti in tempo reale</div><h2 class="section-title">Galleria foto<br>condivisa</h2><p class="intro">Carica le tue foto del grande giorno: finiranno qui, nella memoria collettiva del nostro tramonto.</p>
+  <div class="paper-card album-launcher" style="margin:24px 0;text-align:center">
+    <button class="album-icon" id="toggleAlbum" type="button" aria-expanded="false" aria-controls="albumContent" aria-label="Apri l’album delle foto condivise">📸</button>
+    <h3>Album condiviso</h3>
+    <p class="notice">Tocca l’icona per aprire tutte le foto condivise dagli invitati. L’album è consultabile senza codice; il codice serve solo per caricare nuove foto.</p>
+    <button class="btn" id="toggleAlbumText" type="button">APRI L’ALBUM FOTO ↗</button>
+  </div>
+  <div id="albumContent" hidden>
+    <div class="paper-card" style="margin:24px 0">
+      <button class="btn" id="refreshGallery" type="button">AGGIORNA ALBUM ↻</button>
+      <p class="status" id="galleryStatus" role="status" aria-live="polite">Apri l’album per caricare le foto…</p>
+      <div class="preview" id="sharedGallery" aria-label="Foto condivise dagli invitati"></div>
+      <button class="btn" id="closeAlbum" type="button">CHIUDI ALBUM ↑</button>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="paper-card"><h3>Condividi le tue foto</h3><p class="notice">Inserisci il codice d’invito per caricare le foto nell’album condiviso. Sono accettate immagini JPEG, PNG e WebP fino a 8 MB ciascuna.</p>
+      <label for="photoCode">Codice d’invito per caricare</label><input id="photoCode" type="password" autocomplete="off" placeholder="Codice d’invito" aria-label="Codice d’invito per caricare le foto">
+      <div class="uploads"><input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-label="Scegli foto da caricare"><button class="btn navy" id="uploadPhotos" type="button">CARICA LE FOTO →</button></div><p class="status" id="photoStatus" role="status" aria-live="polite"></p><div class="preview" id="photoPreview"></div>
+    </div>
+
+  </div>
+</section>
+<section id="lista">
+  <div class="two-col">
+    <div><div class="gift-mark">✳</div><div class="section-kicker">Un pensiero per noi</div><h2 class="section-title">Il nostro viaggio insieme</h2></div>
+    <div><div class="paper-card"><p>La vostra presenza sarà il regalo più bello.</p><p>Se desiderate farci un pensiero, ci aiuterete a trasformare il nostro viaggio di nozze in un'avventura piena di emozioni, luoghi meravigliosi e ricordi da custodire per sempre.</p><p class="iban">IT95S0623011203000015423463</p><p><strong>Intestatari:</strong> Bovenzi Giovanni Ambrosino Alessia</p><p>Grazie di cuore per essere parte della nostra storia e per accompagnarci in questo nuovo capitolo della nostra vita. ❤️</p></div></div>
+  </div>
+</section>
+</main>
+<footer><strong>Alessia & Giovanni</strong><p>3 SETTEMBRE 2027 · NABILAH BEACH CLUB · BACOLI</p><span>Non vediamo l’ora di festeggiare con voi!</span></footer>
+<script>
+const target = new Date('2027-09-03T17:30:00+02:00');
+function updateCountdown(){const now=new Date();let ms=Math.max(0,target-now);const d=Math.floor(ms/86400000);const h=Math.floor(ms%86400000/3600000);const m=Math.floor(ms%3600000/60000);const s=Math.floor(ms%60000/1000);document.getElementById('countdown').innerHTML=[['GIORNI',d],['ORE',h],['MIN',m],['SEC',s]].map(([l,v])=>`<div class="countbox"><b>${v}</b><span>${l}</span></div>`).join('')}
+updateCountdown();setInterval(updateCountdown,1000);
+document.getElementById('menuToggle').addEventListener('click',()=>{const nav=document.getElementById('mainNav');const open=nav.classList.toggle('open');document.getElementById('menuToggle').setAttribute('aria-expanded',String(open));});
+document.querySelectorAll('#mainNav a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('mainNav').classList.remove('open');document.getElementById('menuToggle').setAttribute('aria-expanded','false');}));
+document.getElementById('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('dark-mode');document.getElementById('themeToggle').textContent=document.body.classList.contains('dark-mode')?'☀':'☾';});
+document.getElementById('rsvpForm').addEventListener('submit',e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target));document.getElementById('rsvpStatus').textContent=`Grazie ${data.nome}! La risposta è stata acquisita in questa demo, ma il salvataggio online deve ancora essere attivato.`;});
+// Configurazione pubblica del frontend: inserire qui la chiave publishable/anon di Supabase.
+// NON inserire mai la service_role key in questo file.
+const SUPABASE_URL = 'https://odxwfibtxebpuryrrrnd.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_lxx4m2BCiyXjJLQvKlJLJA_3c1BJT3h';
+let supabaseClient = null;
+try {
+  if (window.supabase && SUPABASE_ANON_KEY) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+} catch (err) { console.error('Inizializzazione Supabase non riuscita', err); }
+
+const photoInput = document.getElementById('photoInput');
+const photoPreview = document.getElementById('photoPreview');
+const photoStatus = document.getElementById('photoStatus');
+const sharedGallery = document.getElementById('sharedGallery');
+const galleryStatus = document.getElementById('galleryStatus');
+
+async function loadSharedGallery() {
+  if (!supabaseClient) { galleryStatus.textContent = 'Album non disponibile: configurazione Supabase mancante.'; return; }
+  galleryStatus.textContent = 'Caricamento delle foto condivise…';
+  sharedGallery.replaceChildren();
+  try {
+    const { data, error } = await supabaseClient.storage.from('Wedding-photos').list('', { limit: 100, sortBy: { column: 'created_at', order: 'desc' } });
+    if (error) throw error;
+    const photos = (data || []).filter(item => item.name && !item.name.startsWith('.'));
+    if (!photos.length) { galleryStatus.textContent = 'L’album è vuoto per ora. Le foto caricate appariranno qui.'; return; }
+    for (const photo of photos) {
+      const { data: urlData } = supabaseClient.storage.from('Wedding-photos').getPublicUrl(photo.name);
+      const card = document.createElement('div'); card.className = 'photo-card';
+      const link = document.createElement('a'); link.href = urlData.publicUrl; link.target = '_blank'; link.rel = 'noopener'; link.setAttribute('aria-label', 'Apri foto condivisa');
+      const img = document.createElement('img'); img.src = urlData.publicUrl; img.alt = 'Foto condivisa dagli invitati'; img.loading = 'lazy';
+      img.onerror = () => card.remove(); link.appendChild(img);
+      const download = document.createElement('a');
+      download.className = 'photo-download';
+      download.textContent = '↓ Scarica foto';
+      download.target = '_blank';
+      download.rel = 'noopener';
+      const ext = photo.metadata?.mimetype === 'image/png' ? '.png' : photo.metadata?.mimetype === 'image/webp' ? '.webp' : '.jpg';
+      const filename = `foto-matrimonio-${photo.name}${ext}`;
+      // Supabase Storage supports ?download= to request an attachment directly.
+      download.href = urlData.publicUrl + '?download=' + encodeURIComponent(filename);
+      download.setAttribute('aria-label', 'Scarica foto sul dispositivo');
+      card.append(link, download); sharedGallery.appendChild(card);
+    }
+    galleryStatus.textContent = `Nell’album ci sono ${photos.length} foto.`;
+  } catch (err) {
+    console.error('Errore caricamento album condiviso', err);
+    galleryStatus.textContent = 'Non riesco a leggere l’elenco delle foto. Potrebbe essere necessario abilitare la lettura pubblica dell’elenco del bucket in Supabase Storage.';
+  }
+}
+
+document.getElementById('refreshGallery').addEventListener('click', loadSharedGallery);
+
+photoInput.addEventListener('change', () => {
+  photoPreview.innerHTML = '';
+  [...photoInput.files].forEach(file => {
+    if (!['image/jpeg','image/png','image/webp'].includes(file.type) || file.size > 8 * 1024 * 1024) return;
+    const img = document.createElement('img'); img.alt = 'Anteprima della foto selezionata';
+    img.src = URL.createObjectURL(file); photoPreview.appendChild(img);
+  });
+});
+
+document.getElementById('uploadPhotos').addEventListener('click', async () => {
+  const files = [...photoInput.files];
+  const code = document.getElementById('photoCode').value;
+  photoStatus.textContent = '';
+  if (!supabaseClient) { photoStatus.textContent = 'Prima di caricare, inserisci la chiave publishable/anon di Supabase nella configurazione del file HTML.'; return; }
+  if (!code) { photoStatus.textContent = 'Inserisci il codice d’invito.'; return; }
+  if (!files.length) { photoStatus.textContent = 'Scegli almeno una foto.'; return; }
+  const allowed = ['image/jpeg','image/png','image/webp'];
+  for (const file of files) {
+    if (!allowed.includes(file.type)) { photoStatus.textContent = 'Formato non consentito: usa JPEG, PNG o WebP.'; return; }
+    if (file.size > 8 * 1024 * 1024) { photoStatus.textContent = `La foto “${file.name}” supera 8 MB.`; return; }
+  }
+  const button = document.getElementById('uploadPhotos'); button.disabled = true;
+  let succeeded = 0;
+  try {
+    for (const file of files) {
+      photoStatus.textContent = `Caricamento ${succeeded + 1} di ${files.length}…`;
+      const { data: signed, error: signError } = await supabaseClient.functions.invoke('request-photo-upload', { body: { code, contentType: file.type } });
+      if (signError || !signed || !signed.path || !signed.token) throw new Error(signError?.message || signed?.error || 'Non è stato possibile autorizzare il caricamento.');
+      const { error: uploadError } = await supabaseClient.storage.from('Wedding-photos').uploadToSignedUrl(signed.path, signed.token, file, { contentType: file.type, upsert: false });
+      if (uploadError) throw uploadError;
+      succeeded++;
+    }
+    photoStatus.textContent = `Caricamento completato: ${succeeded} foto salvate nell’archivio online.`;
+    photoInput.value = '';
+    photoPreview.replaceChildren();
+    await loadSharedGallery();
+  } catch (err) {
+    console.error('Errore caricamento foto', err);
+    photoStatus.textContent = 'Non è stato possibile caricare le foto. Controlla il codice d’invito e riprova.';
+  } finally { button.disabled = false; }
+});
+
+// L'album viene caricato quando l'ospite lo apre, per mantenere la pagina compatta.
+
+const albumContent = document.getElementById('albumContent');
+let albumLoaded = false;
+function toggleAlbum(open) {
+  albumContent.hidden = !open;
+  document.getElementById('toggleAlbum').setAttribute('aria-expanded', String(open));
+  document.getElementById('toggleAlbumText').textContent = open ? 'CHIUDI L’ALBUM FOTO ↑' : 'APRI L’ALBUM FOTO ↗';
+  if (open && !albumLoaded) { albumLoaded = true; if (typeof loadSharedGallery === 'function') loadSharedGallery(); else document.getElementById('refreshGallery').click(); }
+  if (open) albumContent.scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('toggleAlbum').addEventListener('click',()=>toggleAlbum(albumContent.hidden));
+document.getElementById('toggleAlbumText').addEventListener('click',()=>toggleAlbum(albumContent.hidden));
+document.getElementById('closeAlbum').addEventListener('click',()=>toggleAlbum(false));
+</script>
+</body>
+</html>

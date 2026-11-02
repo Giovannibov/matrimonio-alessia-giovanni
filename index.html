@@ -168,7 +168,8 @@ document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
         last_name: String(data.cognome || '').trim(),
         attendance: data.presenza,
         party_size: Number(data.ospiti || 1),
-        dietary_notes: String(data.dieta || '').trim() || null
+        dietary_notes: String(data.dieta || '').trim() || null,
+        message: String(data.nota || '').trim() || null
       })
       .abortSignal(AbortSignal.timeout(12000));
 
